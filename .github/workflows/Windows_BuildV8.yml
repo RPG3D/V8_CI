@@ -65,5 +65,10 @@ jobs:
           echo %path%
           echo %vs2019_install%
       
-        
+     # test gclient
+      - name: test gclient
+        shell: cmd
+        working-directory: ${{env.working-directory}}
+        run: |
+          gclient
       
