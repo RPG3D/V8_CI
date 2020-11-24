@@ -19,6 +19,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+      working-directory: D:/WorkingDir
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -31,7 +33,7 @@ jobs:
       - name: download depot_tools
         shell: cmd
         run: |
-          cd %GITHUB_WORKSPACE%
+          working-directory: ${env.working-directory}
           curl https://storage.googleapis.com/chrome-infra/depot_tools.zip  >./depot_tools.zip
           dir
           
@@ -39,14 +41,14 @@ jobs:
       - name: unzip depot_tools
         shell: cmd
         run: |
-          cd %GITHUB_WORKSPACE%
+          working-directory: ${env.working-directory}
           tar -xf %~dp0%depot_tools.zip
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
         shell: cmd
         run: |
-          cd %GITHUB_WORKSPACE%
+          working-directory: ${env.working-directory}
           setx /M path "%path%;%%~dp0%\depot_tools"
           setx /M vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           echo %path%
