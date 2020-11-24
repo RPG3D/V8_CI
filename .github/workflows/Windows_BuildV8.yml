@@ -27,7 +27,6 @@ jobs:
       # test
       - name: test env
         run: |
-          echo ${{GITHUB_API_URL}}
           echo %GITHUB_API_URL%
           echo $GITHUB_API_URL
             
