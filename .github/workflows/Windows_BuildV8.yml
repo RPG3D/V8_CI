@@ -44,7 +44,7 @@ jobs:
         shell: cmd
         run: |
           setx /M path "%path%;%%~dp0%\depot_tools"
-          setx /M vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional"
+          setx /M vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           echo %path%
           echo %vs2019_install%
       
