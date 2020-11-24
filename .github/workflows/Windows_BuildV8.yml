@@ -19,7 +19,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: windows-latest
     env:
-      working-directory: $GITHUB_WORKSPACE
+      working-directory: ${{GITHUB_WORKSPACE}}
 
     if: github.event.repository.owner.id == github.event.sender.id
 
