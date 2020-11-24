@@ -37,6 +37,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
             repository: V8/V8
+            path: V8 
 
       # Runs a single command using the runners shell
       - name: download depot_tools
@@ -51,7 +52,8 @@ jobs:
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
-          tar -xf %~dp0%depot_tools.zip
+          cd /D ${{env.working-directory}}
+          tar -xf ./depot_tools.zip
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
