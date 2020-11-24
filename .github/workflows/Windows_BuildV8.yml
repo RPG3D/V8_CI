@@ -31,8 +31,8 @@ jobs:
         shell: cmd
         run: |
           echo %env.working-directory%
-          echo $GITHUB_WORKSPACE
-          echo ${{GITHUB_WORKSPACE}}
+          echo $env.working-directory
+          echo ${{env.working-directory}}
             
             
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
