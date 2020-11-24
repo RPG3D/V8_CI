@@ -30,7 +30,7 @@ jobs:
       - name: download depot_tools
         shell: cmd
         run: |
-          wget https://storage.googleapis.com/chrome-infra/depot_tools.zip
+          curl https://storage.googleapis.com/chrome-infra/depot_tools.zip
           
       # unzip depot_tools
       - name: unzip depot_tools
