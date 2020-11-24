@@ -29,19 +29,19 @@ jobs:
       # Runs a single command using the runners shell
       - name: download depot_tools
       - shell: cmd
-        run: |
+      - run: |
           wget https://storage.googleapis.com/chrome-infra/depot_tools.zip
           
       # unzip depot_tools
       - name: unzip depot_tools
       - shell: powershell
-        run: |
+      - run: |
           Expand-Archive -Force ./depot_tools.zip ./
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
       - shell: cmd
-        run: |
+      - run: |
           setx /M path "%path%;%%~dp0%\depot_tools"
           setx /M vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional"
           echo %path%
