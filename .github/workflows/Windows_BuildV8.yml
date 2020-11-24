@@ -32,12 +32,13 @@ jobs:
         shell: cmd
         run: |
           curl https://storage.googleapis.com/chrome-infra/depot_tools.zip
+          dir
           
       # unzip depot_tools
       - name: unzip depot_tools
         shell: cmd
         run: |
-          tar -xf./depot_tools.zip
+          tar -xf %~dp0%depot_tools.zip
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
