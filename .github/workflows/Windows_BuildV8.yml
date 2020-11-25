@@ -68,20 +68,20 @@ jobs:
           
      # checkut V8
       - name: checkout V8
-        shell: cmd
+        shell: powershell
         working-directory: ${{env.working-directory}}
         run: |
           echo on
-          echo %PATH%
+          echo $env:PATH
           mkdir ./V8
           cd ./V8
-          fetch.bat V8
-          gclient.bat sync
+          fetch V8
+          gclient sync
           
      # build V8
       - name: build V8
-        shell: cmd
+        shell: powershell
         working-directory: ${{env.working-directory}}
         run: |
           cd ./V8
-          tools/dev/gm.py x64.release
+          python tools/dev/gm.py x64.release
