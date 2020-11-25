@@ -49,23 +49,8 @@ jobs:
           mkdir depot_tools 
           cd depot_tools
           tar -xf ../depot_tools.zip
-          
-      # add depot_tools & VS2019 to PATH
-      - name: add depot_tools & VS2019 to PATH
-        shell: powershell
-        working-directory: ${{env.working-directory}}
-        run: |
-          $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
-          $newpath = "${{env.working-directory}}\depot_tools;$oldpath"
-          Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
-          
-          (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
-          
-          Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name DEPOT_TOOLS_WIN_TOOLCHAIN -Value "0"
-
           gclient
-          where python
-      
+          
           
      # checkut V8
       - name: checkout V8
@@ -73,16 +58,13 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: |
           echo on
-          echo $env:PATH
+          $ENV:vs2019_install="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+          $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN="0"
+          $ENV:PATH="${{env.working-directory}}\depot_tools;$ENV:PATH"
           mkdir ./V8
           cd ./V8
           fetch V8
           gclient sync
-          
-     # build V8
-      - name: build V8
-        shell: powershell
-        working-directory: ${{env.working-directory}}
-        run: |
-          cd ./V8
           python tools/dev/gm.py x64.release
+          
+
