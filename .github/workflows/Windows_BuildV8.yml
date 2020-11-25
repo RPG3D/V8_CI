@@ -55,13 +55,12 @@ jobs:
         shell: powershell
         working-directory: ${{env.working-directory}}
         run: |
-          $env:Path="${{env.working-directory}}\depot_tools;"+$env:Path
-          $env:vs2019_install="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-          echo on
-          echo $env:path
-          echo $env:vs2019_install
+          $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+          $newpath = "${{env.working-directory}}\depot_tools;$oldpath"
+          Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
           
-          $env:DEPOT_TOOLS_WIN_TOOLCHAIN="0"
+          Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name DEPOT_TOOLS_WIN_TOOLCHAIN -Value "0"
+
           where python
       
           
