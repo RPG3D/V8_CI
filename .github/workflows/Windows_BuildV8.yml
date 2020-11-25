@@ -63,6 +63,7 @@ jobs:
           
           Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name DEPOT_TOOLS_WIN_TOOLCHAIN -Value "0"
 
+          gclient
           where python
       
           
