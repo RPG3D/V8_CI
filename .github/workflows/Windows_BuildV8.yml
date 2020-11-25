@@ -26,26 +26,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # test
-      - name: test env
-        shell: cmd
-        run: |
-          echo ${{env.working-directory}}
-          
-      # Runs a single command using the runners shell
-      - name: download depot_tools
+     
+      # unzip depot_tools
+      - name: download & unzip depot_tools
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
           curl https://storage.googleapis.com/chrome-infra/depot_tools.zip  >./depot_tools.zip
-          dir
-          
-      # unzip depot_tools
-      - name: unzip depot_tools
-        shell: cmd
-        working-directory: ${{env.working-directory}}
-        run: |
-          cd /D ${{env.working-directory}}
           mkdir depot_tools 
           cd depot_tools
           tar -xf ../depot_tools.zip
