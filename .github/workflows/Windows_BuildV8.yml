@@ -49,7 +49,6 @@ jobs:
           mkdir depot_tools 
           cd depot_tools
           tar -xf ../depot_tools.zip
-          dir .
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
@@ -73,8 +72,8 @@ jobs:
         run: |
           mkdir ./V8
           cd ./V8
-          fetch V8
-          gclient sync
+          fetch.bat V8
+          gclient.bat sync
           
      # build V8
       - name: build V8
