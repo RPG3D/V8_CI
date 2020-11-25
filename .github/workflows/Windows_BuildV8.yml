@@ -41,7 +41,7 @@ jobs:
           dir
           
       # unzip depot_tools
-      - name: unzip & update depot_tools
+      - name: unzip depot_tools
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
@@ -49,9 +49,8 @@ jobs:
           mkdir depot_tools 
           cd depot_tools
           tar -xf ../depot_tools.zip
-          gclient sync
           cd ../
-          dir
+          dir .
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
