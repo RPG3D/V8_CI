@@ -57,7 +57,7 @@ jobs:
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
-          setx PATH "%PATH%;${{env.working-directory}}\depot_tools"
+          setx PATH "${{env.working-directory}}\depot_tools;%PATH%"
           setx vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           echo on
           echo %PATH%
