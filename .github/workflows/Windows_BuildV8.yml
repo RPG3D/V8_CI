@@ -31,14 +31,7 @@ jobs:
         shell: cmd
         run: |
           echo ${{env.working-directory}}
-            
-            
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-            repository: V8/V8
-            path: V8 
-
+          
       # Runs a single command using the runners shell
       - name: download depot_tools
         shell: cmd
@@ -48,27 +41,47 @@ jobs:
           dir
           
       # unzip depot_tools
-      - name: unzip depot_tools
+      - name: unzip & update depot_tools
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
           cd /D ${{env.working-directory}}
-          tar -xf ./depot_tools.zip
+          mkdir depot_tools 
+          cd depot_tools
+          tar -xf ../depot_tools.zip
+          gclient
+          cd ../
+          dir
           
       # add depot_tools & VS2019 to PATH
       - name: add depot_tools & VS2019 to PATH
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
-          setx /M path "%path%;${{env.working-directory}}\depot_tools"
-          setx /M vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+          setx path "%path%;${{env.working-directory}}\depot_tools"
+          setx vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+          
           echo %path%
           echo %vs2019_install%
+          
+          setx /M DEPOT_TOOLS_WIN_TOOLCHAIN "0"
+          where python
       
-     # test gclient
-      - name: test gclient
+          
+     # checkut V8
+      - name: checkout V8
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
-          gclient
-      
+          mkdir ./V8
+          cd ./V8
+          fetch V8
+          gclient sync
+          
+     # build V8
+      - name: build V8
+        shell: cmd
+        working-directory: ${{env.working-directory}}
+        run: |
+          cd ./V8
+          tools/dev/gm.py x64.release
