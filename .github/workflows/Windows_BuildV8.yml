@@ -59,6 +59,8 @@ jobs:
           $newpath = "${{env.working-directory}}\depot_tools;$oldpath"
           Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
           
+          (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+          
           Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name DEPOT_TOOLS_WIN_TOOLCHAIN -Value "0"
 
           where python
@@ -69,6 +71,8 @@ jobs:
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
+          echo on
+          echo %PATH%
           mkdir ./V8
           cd ./V8
           fetch.bat V8
