@@ -57,9 +57,10 @@ jobs:
         shell: cmd
         working-directory: ${{env.working-directory}}
         run: |
-          setx path "%PATH%;${{env.working-directory}}\depot_tools"
+          setx PATH "%PATH%;${{env.working-directory}}\depot_tools"
           setx vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-          
+          echo on
+          echo %PATH%
           echo %vs2019_install%
           
           set /M DEPOT_TOOLS_WIN_TOOLCHAIN "0"
