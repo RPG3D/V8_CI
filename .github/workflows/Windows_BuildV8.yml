@@ -27,7 +27,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
      
-      # unzip depot_tools
+      # download & unzip depot_tools
       - name: download & unzip depot_tools
         shell: cmd
         working-directory: ${{env.working-directory}}
@@ -39,8 +39,8 @@ jobs:
           gclient
           
           
-     # checkut V8
-      - name: checkout V8
+     # checkut & build V8
+      - name: checkut & build V8
         shell: powershell
         working-directory: ${{env.working-directory}}
         run: |
