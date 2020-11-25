@@ -64,7 +64,7 @@ jobs:
           echo %path%
           echo %vs2019_install%
           
-          setx /M DEPOT_TOOLS_WIN_TOOLCHAIN "0"
+          set /M DEPOT_TOOLS_WIN_TOOLCHAIN "0"
           where python
       
           
