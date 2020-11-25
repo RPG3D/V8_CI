@@ -17,7 +17,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-2016
+    runs-on: windows-latest
     env:
       working-directory: ${{github.workspace}}
 
@@ -58,7 +58,7 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: |
           setx PATH "${{env.working-directory}}\depot_tools;%PATH%"
-          setx vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise"
+          setx vs2019_install "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           echo on
           echo %PATH%
           echo %vs2019_install%
