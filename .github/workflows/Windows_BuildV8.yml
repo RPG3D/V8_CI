@@ -48,21 +48,13 @@ jobs:
           $ENV:vs2019_install="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN="0"
           $ENV:PATH="${{env.working-directory}}\depot_tools;$ENV:PATH"
-          
-          git config --global user.name "John Doe"
-          git config --global user.email "jdoe@email.com"
-          git config --global core.autocrlf false
-          git config --global core.filemode false
-          git config --global color.ui true
-          
+
           echo "begin gclient sync"
           gclient sync
           echo "end gclient sync"
-          ./build/install-build-deps.sh
+
           cd V8
-          
-          ./build/install-build-deps.sh
-         
+
           python tools/dev/gm.py x64.release
           
 
