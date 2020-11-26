@@ -41,15 +41,17 @@ jobs:
           echo on
           
           export PATH=$PATH:"$PWD/depot_tools"
-
-          gclient config https:/github.com/V8/V8.git
+                    
+          git config --global user.name "John Doe"
+          git config --global user.email "jdoe@email.com"
+          git config --global core.autocrlf false
+          git config --global core.filemode false
+          git config --global color.ui true
+          
+          ./build/install-build-deps.sh
           
           gclient sync
           
           cd V8
-          
-          echo "begin gclient sync"
-          gclient sync
-          echo "end gclient sync"
           
           python ./tools/dev/gm.py x64.release
