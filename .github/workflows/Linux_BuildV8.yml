@@ -48,10 +48,8 @@ jobs:
           git config --global core.filemode false
           git config --global color.ui true
           
-          ./build/install-build-deps.sh
-          
           gclient sync
           
           cd V8
-          
+          ./build/install-build-deps.sh
           python ./tools/dev/gm.py x64.release
