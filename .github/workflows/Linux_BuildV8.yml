@@ -40,19 +40,19 @@ jobs:
         run: |
           echo on
           
-          export PATH=$PATH:$PWD/depot_tools
+          export PATH=$PATH:"$PWD/depot_tools"
           echo $PATH
           
-          ./depot_tools/gclient config https:/github.com/V8/V8.git
+          gclient config https:/github.com/V8/V8.git
           
           echo "begin fetch V8"
-          ./depot_tools/fetch V8
+          fetch V8
           echo "end fetch V8"
           
           cd V8
           
           echo "begin gclient sync"
-          ./depot_tools/gclient sync
+          gclient sync
           echo "end gclient sync"
           
           python ./tools/dev/gm.py x64.release
