@@ -40,7 +40,8 @@ jobs:
         run: |
           echo on
           
-          PATH="$PATH:$(pwd)/depot_tools"
+          export PATH=$PATH:$PWD/depot_tools
+          echo $PATH
           
           ./depot_tools/gclient config https:/github.com/V8/V8.git
           
