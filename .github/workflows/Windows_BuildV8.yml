@@ -49,16 +49,14 @@ jobs:
           $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN="0"
           $ENV:PATH="${{env.working-directory}}\depot_tools;$ENV:PATH"
           
-          echo "begin fetch V8"
-          fetch V8
-          echo "end fetch V8"
-          
-          cd V8
+       
           
           echo "begin gclient sync"
           gclient sync
           echo "end gclient sync"
           
+          cd V8
+         
           python tools/dev/gm.py x64.release
           
 
