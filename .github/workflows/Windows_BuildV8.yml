@@ -47,14 +47,16 @@ jobs:
           echo on
           $ENV:vs2019_install="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN="0"
+          $ENV:GYP_MSVS_VERSION="2019"
           $ENV:PATH="${{env.working-directory}}\depot_tools;$ENV:PATH"
-
-          echo "begin gclient sync"
-          gclient sync
-          echo "end gclient sync"
-
-          cd V8
-
-          python tools/dev/gm.py x64.release
           
-
+          echo "begin fetch V8"
+          fetch V8
+          echo "end fetch V8"
+          
+          cd V8
+          
+          echo "begin gclient sync"
+          echo "end gclient sync"
+          
+          python tools/dev/gm.py x64.release
