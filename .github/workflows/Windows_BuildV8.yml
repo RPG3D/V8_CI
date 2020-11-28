@@ -50,13 +50,9 @@ jobs:
           $ENV:GYP_MSVS_VERSION="2019"
           $ENV:PATH="${{env.working-directory}}\depot_tools;$ENV:PATH"
           
-          echo "begin fetch V8"
           fetch V8
-          echo "end fetch V8"
           
           cd V8
           
-          echo "begin gclient sync"
-          echo "end gclient sync"
           
           python tools/dev/gm.py x64.release
